@@ -1,0 +1,30 @@
+# More information on the parameters can be found here: https://documentation.red-gate.com/flyway/reference/configuration
+
+flyway.url=jdbc:snowflake://KAKFMVM-PBB25736.snowflakecomputing.com/?db=ANALYTICS&warehouse=COMPUTE_WH&role=ACCOUNTADMIN&JDBC_QUERY_RESULT_FORMAT=JSON
+flyway.user=vivek8197
+flyway.password=Snowflake@8197339944
+#flyway.driver=com.snowflake.client.jdbc.SnowflakeDriver
+#flyway.connectRetries=3
+flyway.schemas=DBT_VKUMAR
+flyway.defaultSchema=DBT_VKUMAR
+#flyway.locations=classpath:sql
+flyway.locations = filesystem:C:/flyway-12.4.0/sql
+flyway.baselineOnMigrate=true
+flyway.baselineVersion=1
+#flyway.ignoreUnsupportedDb=true
+# initSql =
+# jdbcProperties =
+# resolvers =
+
+#[flyway]
+# environment = "sample" # It is recommended to configure environment as a commandline argument. This allows using different environments depending on the caller.
+#locations = ["C:/flyway-12.4.0/sql/V1__schema.sql"]
+# jarDirs = ["path/to/java/migrations"]
+
+# [environments.build]
+# url = "jdbc:sqlite::memory:"
+# user = "buildUser"
+# password = "buildPassword"
+
+# [flyway.check]
+# buildEnvironment = "build"
