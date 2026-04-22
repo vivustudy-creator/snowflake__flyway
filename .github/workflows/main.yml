@@ -19,10 +19,12 @@ jobs:
         flyway -v   # verify installation
 
     - name: Run Flyway Migration on QA
+      env:
+        JAVA_TOOL_OPTIONS: --add-opens=java.base/java.nio=ALL-UNNAMED
       run: |
         flyway \
-        -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=DEV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
-        -user="${{ secrets.SNOWFLAKE_DEV_USER }}" \
-        -password="${{ secrets.SNOWFLAKE_DEV_PASSWORD }}" \
-        -locations="filesystem:sql" \
-        migrate
+          -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=DEV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
+          -user="${{ secrets.SNOWFLAKE_QA_USER }}" \
+          -password="${{ secrets.SNOWFLAKE_QA_PASSWORD }}" \
+          -locations="filesystem:sql" \
+          migrate
