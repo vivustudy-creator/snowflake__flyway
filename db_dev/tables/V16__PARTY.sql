@@ -1,0 +1,6 @@
+CREATE TABLE PARTY (
+    PARTY INT,
+    PARTY_name VARCHAR(100),
+    price DECIMAL(10,2),
+    PARTY_category VARCHAR(50)
+);

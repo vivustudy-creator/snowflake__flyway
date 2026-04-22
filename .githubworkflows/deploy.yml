@@ -21,8 +21,8 @@ jobs:
       run: |
         flyway \
         -url=jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=QA_ENV&warehouse=COMPUTE_WH&role=DEPLOY_ROLE \
-        -user=${{ secrets.SNOWFLAKE_QA_USER }} \
-        -password=${{ secrets.SNOWFLAKE_QA_PASSWORD }} \
+        -user=${{ secrets.SNOWFLAKE_DEV_USER }} \
+        -password=${{ secrets.SNOWFLAKE_DEV_PASSWORD }} \
         -locations=filesystem:C:/flyway-12.4.0/db_dev \
         -baselineOnMigrate=true \
         migrate

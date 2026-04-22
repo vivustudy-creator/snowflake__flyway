@@ -1,0 +1,6 @@
+CREATE TABLE MARKET (
+    MARKET INT,
+    MARKET_name VARCHAR(100),
+    price DECIMAL(10,2),
+    MARKET_category VARCHAR(50)
+);
