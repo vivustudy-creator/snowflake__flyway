@@ -16,12 +16,13 @@ jobs:
       run: |
         wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/10.10.0/flyway-commandline-10.10.0-linux-x64.tar.gz | tar xvz
         sudo ln -s $(pwd)/flyway-10.10.0/flyway /usr/local/bin/flyway
+        flyway -v   # verify installation
 
     - name: Run Flyway Migration on QA
       run: |
-        ./flyway/flyway \
-          -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=DEV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
-          -user="${{ secrets.SNOWFLAKE_USER }}" \
-          -password="${{ secrets.SNOWFLAKE_PASSWORD }}" \
-          -locations="filesystem:sql" \
-          migrate
+        flyway \
+        -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=DEV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
+        -user="${{ secrets.SNOWFLAKE_USER }}" \
+        -password="${{ secrets.SNOWFLAKE_PASSWORD }}" \
+        -locations="filesystem:sql" \
+        migrate
