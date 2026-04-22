@@ -14,10 +14,8 @@ jobs:
 
     - name: Install Flyway
       run: |
-        wget -qO flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/10.15.2/flyway-commandline-10.15.2-linux-x64.tar.gz
-        tar -xzf flyway.tar.gz
-        sudo ln -s $(pwd)/flyway-10.15.2/flyway /C:/flyway-12.4.0/db_dev
-        flyway -v 
+        wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/10.10.0/flyway-commandline-10.10.0-linux-x64.tar.gz | tar xvz
+        sudo ln -s $(pwd)/flyway-10.10.0/flyway /usr/local/bin/flyway
 
     - name: Run Flyway Migration on QA
       run: |
