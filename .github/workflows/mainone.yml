@@ -19,10 +19,9 @@ jobs:
 
     - name: Run Flyway Migration on QA
       run: |
-        flyway \
-        -url=jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE \
-        -user=${{ secrets.SNOWFLAKE_DEV_USER }} \
-        -password=${{ secrets.SNOWFLAKE_DEV_PASSWORD }} \
-        -locations=filesystem:C:/flyway-12.4.0/db_dev \
-        -baselineOnMigrate=true \
+        ./flyway/flyway \
+        -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=DEV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
+        -user="${{ secrets.SNOWFLAKE_USER }}" \
+        -password="${{ secrets.SNOWFLAKE_PASSWORD }}" \
+        -locations="filesystem:sql" \
         migrate
