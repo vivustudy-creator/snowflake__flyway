@@ -1,4 +1,4 @@
-name: Deploy Snowflake to QA
+name: Deploy Snowflake to DEV
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
         wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/10.10.0/flyway-commandline-10.10.0-linux-x64.tar.gz | tar xvz
         sudo ln -s $(pwd)/flyway-10.10.0/flyway /usr/local/bin/flyway
 
-    - name: Run Flyway Migration on QA
+    - name: Run Flyway Migration on DEV
       run: |
         ./flyway/flyway \
           -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=DEV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
