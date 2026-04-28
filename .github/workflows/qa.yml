@@ -20,6 +20,16 @@ jobs:
           tar -xzf flyway-commandline-12.4.0-linux-x64.tar.gz
           ls -R
 
+      - name: Flyway Repair (one-time sync)
+        run: |
+          ./flyway-12.4.0/flyway \
+            -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=QA_ENV&warehouse=COMPUTE_WH&role=TESTER_ROLE" \
+            -user="${{ secrets.SNOWFLAKE_QA_USER }}" \
+            -password="${{ secrets.SNOWFLAKE_QA_PASSWORD }}" \
+            repair
+        env:
+          JAVA_TOOL_OPTIONS: "--add-opens=java.base/java.nio=ALL-UNNAMED"
+
       - name: Run Flyway migrations
         run: |
           ./flyway-12.4.0/flyway \
