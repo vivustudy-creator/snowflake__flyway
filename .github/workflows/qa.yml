@@ -16,7 +16,7 @@ jobs:
       # 2️⃣ Install Flyway
       - name: Install Flyway
         run: |
-          wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/12.4.0/flyway-commandline-12.4.0-linux-x64.tar.gz
+          wget https://github.com/flyway/flyway/releases/download/flyway-12.4.0/flyway-commandline-12.4.0-linux-x64.tar.gz
           tar -xzf flyway-commandline-12.4.0-linux-x64.tar.gz
           ls -R
 
