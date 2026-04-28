@@ -2,7 +2,7 @@ name: Deploy Snowflake to DEV
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "develop" ]
 
 jobs:
   flyway-deploy:
