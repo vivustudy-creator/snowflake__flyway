@@ -9,19 +9,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      # 1️⃣ Checkout repo
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Install Flyway
-      run: |
-        wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/10.10.0/flyway-commandline-10.10.0-linux-x64.tar.gz | tar xvz
-        sudo ln -s $(pwd)/flyway-10.10.0/flyway /usr/local/bin/flyway
+      # 2️⃣ Install Flyway
+      - name: Install Flyway
+        run: |
+          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/12.4.0/flyway-commandline-12.4.0-linux-x64.tar.gz | tar -xz
+          ls -R   # 👈 shows folder exists
 
-    - name: Run Flyway Migration on QA
-      run: |
-        ./flyway-12.4.0/flyway \
-          -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=QA_ENV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
-          -user="${{ secrets.SNOWFLAKE_QA_USER }}" \
-          -password="${{ secrets.SNOWFLAKE_QA_PASSWORD }}" \
-          -locations="filesystem:sql" \
-          migrate
+      # 3️⃣ Run Flyway
+      - name: Run Flyway migrations
+        run: |
+          ./flyway-12.4.0/flyway \
+            -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=QA_ENV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
+            -user="${{ secrets.SNOWFLAKE_QA_USER }}" \
+            -password="${{ secrets.SNOWFLAKE_QA_PASSWORD }}" \
+            -locations="filesystem:sql" \
+            migrate
