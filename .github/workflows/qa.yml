@@ -19,7 +19,7 @@ jobs:
 
     - name: Run Flyway Migration on QA
       run: |
-        ./flyway/flyway \
+        ./flyway-12.4.0/flyway \
           -url="jdbc:snowflake://${{ secrets.SNOWFLAKE_ACCOUNT }}.snowflakecomputing.com/?db=CENTRAL_DATA_REPORTING&schema=QA_ENV&warehouse=COMPUTE_WH&role=DEVELOPER_ROLE" \
           -user="${{ secrets.SNOWFLAKE_QA_USER }}" \
           -password="${{ secrets.SNOWFLAKE_QA_PASSWORD }}" \
