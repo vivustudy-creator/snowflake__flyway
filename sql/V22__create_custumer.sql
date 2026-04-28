@@ -1,4 +1,4 @@
-CREATE TABLE DIM_details (
+CREATE or replace TABLE DIM_details (
     CUSTOMER_ID INT,
     CUSTOMER_NAME STRING,
     EMAIL STRING,
