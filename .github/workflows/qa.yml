@@ -20,7 +20,6 @@ jobs:
           tar -xzf flyway-commandline-12.4.0-linux-x64.tar.gz
           ls -R
 
-      # 3️⃣ Run Flyway
       - name: Run Flyway migrations
         run: |
           ./flyway-12.4.0/flyway \
@@ -29,3 +28,5 @@ jobs:
             -password="${{ secrets.SNOWFLAKE_QA_PASSWORD }}" \
             -locations="filesystem:sql" \
             migrate
+        env:
+          JAVA_TOOL_OPTIONS: "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
